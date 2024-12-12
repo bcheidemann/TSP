@@ -1,10 +1,19 @@
 diff --git a/.github/workflows/nightly.yaml b/.github/workflows/nightly.yaml
-index 877b12d85..b3c293b18 100644
+index 877b12d85..3f523dddb 100644
 --- a/.github/workflows/nightly.yaml
 +++ b/.github/workflows/nightly.yaml
 @@ -18,7 +18,7 @@ defaults:
  jobs:
    test:
+     runs-on: ubuntu-latest
+-    if: github.repository == 'microsoft/TypeScript'
++    if: github.repository == 'bcheidemann/TSP'
+ 
+     steps:
+       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+@@ -46,7 +46,7 @@ jobs:
+   publish:
+     needs: [test]
      runs-on: ubuntu-latest
 -    if: github.repository == 'microsoft/TypeScript'
 +    if: github.repository == 'bcheidemann/TSP'

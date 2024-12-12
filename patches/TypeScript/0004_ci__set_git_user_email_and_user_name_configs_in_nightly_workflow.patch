@@ -1,5 +1,5 @@
 diff --git a/.github/workflows/nightly.yaml b/.github/workflows/nightly.yaml
-index b3c293b18..31b72467e 100644
+index 3f523dddb..f80a92780 100644
 --- a/.github/workflows/nightly.yaml
 +++ b/.github/workflows/nightly.yaml
 @@ -28,6 +28,8 @@ jobs:
