@@ -1,0 +1,57 @@
+diff --git a/.github/workflows/nightly.yaml b/.github/workflows/nightly.yaml
+index 375a8255a..877b12d85 100644
+--- a/.github/workflows/nightly.yaml
++++ b/.github/workflows/nightly.yaml
+@@ -22,19 +22,26 @@ jobs:
+ 
+     steps:
+       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
++        with:
++          submodules: true
+       - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+         with:
+           node-version: 'lts/*'
++      - run: |
++          npm ci
++          npm run applyPatches
+       - run: |
+           npm --version
+           # corepack enable npm
+           npm install -g $(jq -r '.packageManager' < package.json)
+           npm --version
++        working-directory: TSP
+       - name: Setup and publish nightly
+         run: |
+           npm ci
+           npx hereby configure-nightly
+           npm test
++        working-directory: TSP
+ 
+   publish:
+     needs: [test]
+@@ -43,11 +50,16 @@ jobs:
+ 
+     steps:
+       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
++        with:
++          submodules: true
+       - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+         with:
+           node-version: 'lts/*'
+           # Use NODE_AUTH_TOKEN environment variable to authenticate to this registry.
+           registry-url: https://registry.npmjs.org/
++      - run: |
++          npm ci
++          npm run applyPatches
+       - run: |
+           npm --version
+           # corepack enable npm
+@@ -60,6 +72,7 @@ jobs:
+           npx hereby configure-nightly
+           npx hereby LKG
+           node ./scripts/addPackageJsonGitHead.mjs package.json
+-          npm publish --tag next
++          npm publish --tag next --access public
++        working-directory: TSP
+         env:
+           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
