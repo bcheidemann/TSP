@@ -1,8 +1,11 @@
 import fs from "node:fs/promises";
-import { execSync } from 'node:child_process';
-import { join } from 'node:path';
+import { execSync } from "node:child_process";
+import { dirname, join } from "node:path";
+import { argv } from "node:process";
 import { TSPDir, TypeScriptPatchesDir } from "./lib/constants.mjs";
 import assert from "node:assert";
+
+const ALLOW_DIRTY_ROOT = argv.includes("--allow-dirty-root");
 
 console.log(` > Checking for uncommitted changes in root...`);
 const modifiedRootFiles = execSync('git status --porcelain', {
@@ -10,7 +13,12 @@ const modifiedRootFiles = execSync('git status --porcelain', {
 }).trim();
 if (modifiedRootFiles) {
   console.log(modifiedRootFiles);
-  throw new Error(`Directory must be clean: ${TSPDir}`);
+  if (ALLOW_DIRTY_ROOT) {
+    console.warn('[WARNING] Directory is not clear: root');
+  }
+  else {
+    throw new Error('Directory must be clean: root');
+  }
 }
 
 console.log(` > Checking for uncommitted changes in ${TSPDir}...`);
@@ -55,11 +63,23 @@ export const syncedEntries = [
     from: join(TSPDir, "README.md"),
     to: "README.md",
   },
+  {
+    type: "file",
+    from: join(TSPDir, ".github/workflows/nightly.yaml"),
+    to: ".github/workflows/nightly.yaml",
+  }
 ];
 for (const [index, syncedEntry] of syncedEntries.entries()) {
-  console.log(` >> [${index + 1}/${syncedEntries.length}] Syncing ${syncedEntry.type} from ${syncedEntry.from} to ${syncedEntries.to}...`);
+  console.log(` >> [${index + 1}/${syncedEntries.length}] Syncing ${syncedEntry.type} from ${syncedEntry.from} to ${syncedEntry.to}...`);
   if (syncedEntry.type === "file") {
-    await fs.rm(syncedEntry.to);
+    await fs.mkdir(dirname(syncedEntry.to), { recursive: true });
+    try {
+      await fs.rm(syncedEntry.to);
+    } catch(err) {
+      if (err.code !== 'ENOENT') {
+        throw err;
+      }
+    }
     await fs.copyFile(syncedEntry.from, syncedEntry.to);
   }
   else {
