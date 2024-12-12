@@ -65,6 +65,11 @@ export const syncedEntries = [
   },
   {
     type: "file",
+    from: join(TSPDir, "LICENSE.txt"),
+    to: "LICENSE.txt",
+  },
+  {
+    type: "file",
     from: join(TSPDir, ".github/workflows/nightly.yaml"),
     to: ".github/workflows/nightly.yaml",
   }
