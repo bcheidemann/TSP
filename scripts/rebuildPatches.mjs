@@ -4,6 +4,25 @@ import { join } from 'node:path';
 import { TSPDir, TypeScriptPatchesDir } from "./lib/constants.mjs";
 import assert from "node:assert";
 
+console.log(` > Checking for uncommitted changes in root...`);
+const modifiedRootFiles = execSync('git status --porcelain', {
+  encoding: 'utf8',
+}).trim();
+if (modifiedRootFiles) {
+  console.log(modifiedRootFiles);
+  throw new Error(`Directory must be clean: ${TSPDir}`);
+}
+
+console.log(` > Checking for uncommitted changes in ${TSPDir}...`);
+const modifiedTspFiles = execSync('git status --porcelain', {
+  encoding: 'utf8',
+  cwd: TSPDir,
+}).trim();
+if (modifiedTspFiles) {
+  console.log(modifiedTspFiles);
+  throw new Error(`Directory must be clean: ${TSPDir}`);
+}
+
 console.log(` > Emptying ${TypeScriptPatchesDir}...`)
 await fs.rm(TypeScriptPatchesDir, { recursive: true, force: true });
 await fs.mkdir(TypeScriptPatchesDir, { recursive: true });
