@@ -1,0 +1,13 @@
+{
+  "name": "tsp",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "applyPatches": "node ./scripts/applyPatches.mjs",
+    "rebuildPatches": "node ./scripts/rebuildPatches.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
