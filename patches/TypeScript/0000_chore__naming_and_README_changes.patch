@@ -1,0 +1,129 @@
+diff --git a/README.md b/README.md
+index 3314c58f4..7ac148feb 100644
+--- a/README.md
++++ b/README.md
+@@ -1,50 +1,48 @@
+ 
+-# TypeScript
++# TypeScript Plus (TSP)
+ 
+-[![GitHub Actions CI](https://github.com/microsoft/TypeScript/workflows/CI/badge.svg)](https://github.com/microsoft/TypeScript/actions?query=workflow%3ACI)
+-[![npm version](https://badge.fury.io/js/typescript.svg)](https://www.npmjs.com/package/typescript)
+-[![Downloads](https://img.shields.io/npm/dm/typescript.svg)](https://www.npmjs.com/package/typescript)
+-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/microsoft/TypeScript/badge)](https://securityscorecards.dev/viewer/?uri=github.com/microsoft/TypeScript)
+-
+-
+-[TypeScript](https://www.typescriptlang.org/) is a language for application-scale JavaScript. TypeScript adds optional types to JavaScript that support tools for large-scale JavaScript applications for any browser, for any host, on any OS. TypeScript compiles to readable, standards-based JavaScript. Try it out at the [playground](https://www.typescriptlang.org/play/), and stay up to date via [our blog](https://blogs.msdn.microsoft.com/typescript) and [Twitter account](https://twitter.com/typescript).
+-
+-Find others who are using TypeScript at [our community page](https://www.typescriptlang.org/community/).
++[TSP](https://github.com/bcheidemann/TSP) is a fork and partial superset of the [TypeScript](https://www.typescriptlang.org/)
++programming language which aims to implement features incompatible with the [design goals](https://github.com/microsoft/TypeScript/wiki/TypeScript-Design-Goals)
++of TypeScript. This includes breaking change upgrades to legacy features such as enums, as well as maintaining support
++for valuable language features TypeScript has dropped support for, such as design time type reflection in EcmaScript
++decorators.
+ 
+ ## Installing
+ 
+ For the latest stable version:
+ 
+ ```bash
+-npm install -D typescript
++npm install -D @typescript-tsp/tsp
+ ```
+ 
+ For our nightly builds:
+ 
+ ```bash
+-npm install -D typescript@next
++npm install -D @typescript-tsp/tsp@next
+ ```
+ 
+-## Contribute
++## Motivation
+ 
+-There are many ways to [contribute](https://github.com/microsoft/TypeScript/blob/main/CONTRIBUTING.md) to TypeScript.
+-* [Submit bugs](https://github.com/microsoft/TypeScript/issues) and help us verify fixes as they are checked in.
+-* Review the [source code changes](https://github.com/microsoft/TypeScript/pulls).
+-* Engage with other TypeScript users and developers on [StackOverflow](https://stackoverflow.com/questions/tagged/typescript).
+-* Help each other in the [TypeScript Community Discord](https://discord.gg/typescript).
+-* Join the [#typescript](https://twitter.com/search?q=%23TypeScript) discussion on Twitter.
+-* [Contribute bug fixes](https://github.com/microsoft/TypeScript/blob/main/CONTRIBUTING.md).
++TypeScripts has clear [design goals](https://github.com/microsoft/TypeScript/wiki/TypeScript-Design-Goals) which are
++intended to minimise deviation from the base JavaScript language. There's nothing wrong with these goals, but they
++prohibit the development of certain new (and we believe useful) features. The goal of TSP is not to maintain "closeness"
++with JavaScript. We believe that TypeScript offers one of the best, most flexible type systems available. This project
++aims to explore what is possible when building upon TypeScript's excellent type system, while embracing the
++opportunities afforded to us by allowing some strategic breaking changes, and implementing a more expressive syntax
++which is not bound by the TypeScript design goals.
+ 
+-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see
+-the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com)
+-with any additional questions or comments.
++## Contribute
+ 
+-## Documentation
++TSP aims to remain up to date with the latest TypeScript features. As such, if your contribution is not specific to TSP,
++it should be made in the upstream [TypeScript repo](https://github.com/microsoft/TypeScript#contribute). However, if
++you're interested in contributing to TSP, feel free to open a pull request, or for larger features requiring
++discussion, please open an issue.
+ 
+-*  [TypeScript in 5 minutes](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
+-*  [Programming handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+-*  [Homepage](https://www.typescriptlang.org/)
++This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
++For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact
++[opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+ 
+ ## Roadmap
+ 
+-For details on our planned features and future direction, please refer to our [roadmap](https://github.com/microsoft/TypeScript/wiki/Roadmap).
++We are currently working on implementing foundational infrastructure, such as patch management and publishing workflows.
++For now, there is no roadmap for the development of specific features.
+diff --git a/bin/tsc b/bin/tsp
+similarity index 100%
+rename from bin/tsc
+rename to bin/tsp
+diff --git a/bin/tsserver b/bin/tspserver
+similarity index 100%
+rename from bin/tsserver
+rename to bin/tspserver
+diff --git a/package.json b/package.json
+index 4ddb7a53a..cb738f14f 100644
+--- a/package.json
++++ b/package.json
+@@ -1,10 +1,10 @@
+ {
+-    "name": "typescript",
+-    "author": "Microsoft Corp.",
++    "name": "@typescript-tsp/tsp",
++    "author": "bcheidemann <ben@heidemann.dev>",
+     "homepage": "https://www.typescriptlang.org/",
+     "version": "5.8.0",
+     "license": "Apache-2.0",
+-    "description": "TypeScript is a language for application scale JavaScript development",
++    "description": "TSP is a fork and superset of the TypeScript programming language which aims to implement features incompatible with the goals of TypeScript",
+     "keywords": [
+         "TypeScript",
+         "Microsoft",
+@@ -13,17 +13,17 @@
+         "javascript"
+     ],
+     "bugs": {
+-        "url": "https://github.com/microsoft/TypeScript/issues"
++        "url": "https://github.com/bcheidemann/TSP/issues"
+     },
+     "repository": {
+         "type": "git",
+-        "url": "https://github.com/microsoft/TypeScript.git"
++        "url": "https://github.com/bcheidemann/TSP.git"
+     },
+     "main": "./lib/typescript.js",
+     "typings": "./lib/typescript.d.ts",
+     "bin": {
+-        "tsc": "./bin/tsc",
+-        "tsserver": "./bin/tsserver"
++        "tsp": "./bin/tsp",
++        "tspserver": "./bin/tspserver"
+     },
+     "engines": {
+         "node": ">=14.17"
