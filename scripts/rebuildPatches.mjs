@@ -1,11 +1,12 @@
 import fs from "node:fs/promises";
-import { execSync } from "node:child_process";
+import { execSync, spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { argv } from "node:process";
 import { TSPDir, TypeScriptPatchesDir } from "./lib/constants.mjs";
 import assert from "node:assert";
 
 const ALLOW_DIRTY_ROOT = argv.includes("--allow-dirty-root");
+const COMMIT = argv.includes("--commit") || argv.includes("-c");
 
 console.log(` > Checking for uncommitted changes in root...`);
 const modifiedRootFiles = execSync('git status --porcelain', {
@@ -89,6 +90,27 @@ for (const [index, syncedEntry] of syncedEntries.entries()) {
   }
   else {
     throw new Error(`Unknown entry type: ${syncedEntry.type}`)
+  }
+}
+
+if (COMMIT) {
+  assert(commits.length !== 0, 'Expected at least one commit');
+  console.log(' > Committing changes to root repo...');
+  const longCommitMessage = execSync(`git log -1 --format=%B ${commits.at(-1).hash}`, {
+    encoding: 'utf8',
+    cwd: TSPDir,
+  });
+  execSync('git add .', {
+    stdio: 'inherit',
+  });
+  const result = spawnSync('git', ['commit', '-m', longCommitMessage], {
+    stdio: 'inherit',
+  })
+  if (result.error) {
+    throw result.error;
+  }
+  if (result.status !== 0) {
+    throw new Error(`Failed to commit: exit code (${result.status}) was not 0`);
   }
 }
 

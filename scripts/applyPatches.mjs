@@ -23,7 +23,7 @@ for (const [index, patchFile] of patchFiles.entries()) {
     stdio: 'inherit',
   });
   const commitMessage = parse(patchFile).name.replace(/^\d{4}_/, '');
-  execSync(`git add .`, {
+  execSync('git add .', {
     cwd: TSPDir,
     stdio: 'inherit',
   });
