@@ -1,0 +1,40 @@
+diff --git a/package-lock.json b/package-lock.json
+index b089dc3b0..17912a324 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -1,16 +1,16 @@
+ {
+-    "name": "typescript",
+-    "version": "5.8.0",
++    "name": "@typescript-tsp/tsp",
++    "version": "0.1.0",
+     "lockfileVersion": 2,
+     "requires": true,
+     "packages": {
+         "": {
+-            "name": "typescript",
+-            "version": "5.8.0",
++            "name": "@typescript-tsp/tsp",
++            "version": "0.1.0",
+             "license": "Apache-2.0",
+             "bin": {
+-                "tsc": "bin/tsc",
+-                "tsserver": "bin/tsserver"
++                "tsp": "bin/tsp",
++                "tspserver": "bin/tspserver"
+             },
+             "devDependencies": {
+                 "@dprint/formatter": "^0.4.1",
+diff --git a/package.json b/package.json
+index cb738f14f..47b960fa0 100644
+--- a/package.json
++++ b/package.json
+@@ -2,7 +2,7 @@
+     "name": "@typescript-tsp/tsp",
+     "author": "bcheidemann <ben@heidemann.dev>",
+     "homepage": "https://www.typescriptlang.org/",
+-    "version": "5.8.0",
++    "version": "0.1.0",
+     "license": "Apache-2.0",
+     "description": "TSP is a fork and superset of the TypeScript programming language which aims to implement features incompatible with the goals of TypeScript",
+     "keywords": [
