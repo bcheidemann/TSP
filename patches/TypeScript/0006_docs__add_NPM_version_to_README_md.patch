@@ -1,0 +1,13 @@
+diff --git a/README.md b/README.md
+index 7ac148feb..470099806 100644
+--- a/README.md
++++ b/README.md
+@@ -1,6 +1,8 @@
+ 
+ # TypeScript Plus (TSP)
+ 
++[![npm version](https://badge.fury.io/js/@typescript-tsp%2Ftsp.svg)](https://badge.fury.io/js/@typescript-tsp%2Ftsp)
++
+ [TSP](https://github.com/bcheidemann/TSP) is a fork and partial superset of the [TypeScript](https://www.typescriptlang.org/)
+ programming language which aims to implement features incompatible with the [design goals](https://github.com/microsoft/TypeScript/wiki/TypeScript-Design-Goals)
+ of TypeScript. This includes breaking change upgrades to legacy features such as enums, as well as maintaining support
