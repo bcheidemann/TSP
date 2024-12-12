@@ -29,4 +29,23 @@ for (const [index, commit] of commits.entries()) {
   await fs.writeFile(join(TypeScriptPatchesDir, `${index.toString().padStart(4, '0')}_${sanitizedMessage}.patch`), patch, 'utf8');
 }
 
+console.log(' > Syncing files...');
+export const syncedEntries = [
+  {
+    type: "file",
+    from: join(TSPDir, "README.md"),
+    to: "README.md",
+  },
+];
+for (const [index, syncedEntry] of syncedEntries.entries()) {
+  console.log(` >> [${index + 1}/${syncedEntries.length}] Syncing ${syncedEntry.type} from ${syncedEntry.from} to ${syncedEntries.to}...`);
+  if (syncedEntry.type === "file") {
+    await fs.rm(syncedEntry.to);
+    await fs.copyFile(syncedEntry.from, syncedEntry.to);
+  }
+  else {
+    throw new Error(`Unknown entry type: ${syncedEntry.type}`)
+  }
+}
+
 console.log(' > Done.');
