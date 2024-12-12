@@ -28,6 +28,8 @@ jobs:
         with:
           node-version: 'lts/*'
       - run: |
+          git config --global user.email ben+tspbot@heidemann.dev
+          git config --global user.name TSP Bot
           npm ci
           npm run applyPatches
       - run: |
@@ -58,6 +60,8 @@ jobs:
           # Use NODE_AUTH_TOKEN environment variable to authenticate to this registry.
           registry-url: https://registry.npmjs.org/
       - run: |
+          git config --global user.email ben+tspbot@heidemann.dev
+          git config --global user.name ben+tspbot@heidemann.dev
           npm ci
           npm run applyPatches
       - run: |
