@@ -33,6 +33,11 @@ aims to explore what is possible when building upon TypeScript's excellent type 
 opportunities afforded to us by allowing some strategic breaking changes, and implementing a more expressive syntax
 which is not bound by the TypeScript design goals.
 
+## Documenation
+
+TSP specific features are documented in [docs/FEATURES.md](https://github.com/bcheidemann/TSP/blob/main/docs/FEATURES.md).
+For TypeScript features, please reference the [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html).
+
 ## Contribute
 
 TSP aims to remain up to date with the latest TypeScript features. As such, if your contribution is not specific to TSP,
