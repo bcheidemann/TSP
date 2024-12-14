@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/nightly.yaml b/.github/workflows/nightly.yaml
+index f80a92780..9d0c1ae46 100644
+--- a/.github/workflows/nightly.yaml
++++ b/.github/workflows/nightly.yaml
+@@ -76,7 +76,7 @@ jobs:
+           npx hereby configure-nightly
+           npx hereby LKG
+           node ./scripts/addPackageJsonGitHead.mjs package.json
+-          npm publish --tag next --access public
++          npm publish --tag next --tag latest --access public
+         working-directory: TSP
+         env:
+           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

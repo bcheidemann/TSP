@@ -76,7 +76,7 @@ jobs:
           npx hereby configure-nightly
           npx hereby LKG
           node ./scripts/addPackageJsonGitHead.mjs package.json
-          npm publish --tag next --access public
+          npm publish --tag next --tag latest --access public
         working-directory: TSP
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
