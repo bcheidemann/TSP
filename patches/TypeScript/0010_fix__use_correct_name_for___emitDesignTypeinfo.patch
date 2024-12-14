@@ -1,0 +1,13 @@
+diff --git a/src/compiler/factory/emitHelpers.ts b/src/compiler/factory/emitHelpers.ts
+index fa87ef0e1..cf8e3a15f 100644
+--- a/src/compiler/factory/emitHelpers.ts
++++ b/src/compiler/factory/emitHelpers.ts
+@@ -394,7 +394,7 @@ export function createEmitHelperFactory(context: TransformationContext): EmitHel
+     function createEmitDesignTypeinfoHelper(metadataValue: Expression) {
+         context.requestEmitHelper(emitDesignTypeinfoHelper);
+         return factory.createCallExpression(
+-            getUnscopedHelperName("__emitEsDecoratorMetadata"),
++            getUnscopedHelperName("__emitDesignTypeinfo"),
+             /*typeArguments*/ undefined,
+             [
+                 metadataValue,
