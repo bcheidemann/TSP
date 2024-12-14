@@ -33,6 +33,15 @@ Currently, TSP supports design time type reflection for TC39 decorators.
 >
 > In future versions of TSP this won't be necessary.
 
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true
+  }
+}
+```
+
 ```ts
 function logDesignTimeTypeinfo(target: null, context: DecoratorContext) {
   const typeinfo = context.metadata["design:typeinfo"][context.name];
