@@ -5,9 +5,13 @@
   "main": "index.js",
   "scripts": {
     "applyPatches": "node ./scripts/applyPatches.mjs",
-    "rebuildPatches": "node ./scripts/rebuildPatches.mjs"
+    "rebuildPatches": "node ./scripts/rebuildPatches.mjs",
+    "verdaccio": "verdaccio --config verdaccio.config.yaml"
   },
   "keywords": [],
   "author": "",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "verdaccio": "^6.0.2"
+  }
 }

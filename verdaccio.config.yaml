@@ -1,0 +1,18 @@
+storage: ./.verdaccio/storage
+auth:
+  htpasswd:
+    file: ./.verdaccio/.htpasswd
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+packages:
+  '@typescript-tsp/*':
+    access: $all
+    publish: $all
+  '@*/*':
+    access: $all
+    publish: $authenticated
+    proxy: npmjs
+  '**':
+    proxy: npmjs
+log: { type: stdout, format: pretty, level: http }
