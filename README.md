@@ -23,6 +23,13 @@ For our nightly builds:
 npm install -D @typescript-tsp/tsp@next
 ```
 
+## Usage
+
+```bash
+# Equivalent to `npx tsc`
+npx tsp
+```
+
 ## Motivation
 
 TypeScripts has clear [design goals](https://github.com/microsoft/TypeScript/wiki/TypeScript-Design-Goals) which are

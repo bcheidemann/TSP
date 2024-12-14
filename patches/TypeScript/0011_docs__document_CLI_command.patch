@@ -1,0 +1,18 @@
+diff --git a/README.md b/README.md
+index c3545dbbc..ef791de5d 100644
+--- a/README.md
++++ b/README.md
+@@ -23,6 +23,13 @@ For our nightly builds:
+ npm install -D @typescript-tsp/tsp@next
+ ```
+ 
++## Usage
++
++```bash
++# Equivalent to `npx tsc`
++npx tsp
++```
++
+ ## Motivation
+ 
+ TypeScripts has clear [design goals](https://github.com/microsoft/TypeScript/wiki/TypeScript-Design-Goals) which are
