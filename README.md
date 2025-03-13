@@ -1,3 +1,10 @@
+> [!IMPORTANT]
+> On the 11th March 2025 the TypeScript team officially [announced](https://devblogs.microsoft.com/typescript/typescript-native-port/)
+> and [open sourced](https://github.com/microsoft/typescript-go) a Go port of the TypeScript Compiler (TSC). Since the current TSP version
+> is based on the TypeScript implementation of TSC, we would stop being able to leverage improvements to the upstream TSC codebase once
+> the Go port becomes to official version. At this point, we could switch the upstream to the Go port, however this port is still early
+> and keeping up with commits would likely be challenging. Therefore, this project is being suspended until the Go port becomes the official
+> stable version of TypeScript. Until then, I plan to familiarise myself with the Go implementation, and continue planning language features.
 
 # TypeScript Plus (TSP)
 
